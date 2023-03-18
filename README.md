@@ -15,6 +15,7 @@ Follow along as we code our way through a Wordle Clone with a couple cups of cof
 ## Timeline 
 
 1st session - March 14 - Commit 84082c7e7a2274669ae92d59ec3894ee81a589a8
+2nd session - March 18 - Commit bf269c3874228488a88b4ec6bce322a790655320 - [Session 2](https://github.com/Henry-Overholt/coffee_and_code_wordle_clone/tree/session2)
 
 ### Technology
 
