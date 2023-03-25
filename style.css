@@ -80,4 +80,9 @@ main {
   height: 100%;
   width: 16%;
   border: 2px solid #3a3a3c;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #ffffff;
+  font-size: 24px;
 }
