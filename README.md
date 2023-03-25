@@ -1,5 +1,5 @@
 # coffee_and_code_wordle_clone
-Coffee and Code Along project where we are making a clone of the popular game 'Wordle'
+Coffee and Code Along project to make a clone of the popular game 'Wordle'
 
 
 ## Description
@@ -9,13 +9,14 @@ Follow along as we code our way through a Wordle Clone with a couple cups of cof
 ## Goals
  
 - Review DOM manipulation with a practical example
-- Working out how to solve issues with code.
+- Working out how to solve issues with code when stuck.
 - Create a portfolio piece students can showcase. 
 
 ## Timeline 
 
-1st session - March 14 - Commit 84082c7e7a2274669ae92d59ec3894ee81a589a8 <br>
-[Session 2](https://github.com/Henry-Overholt/coffee_and_code_wordle_clone/tree/session2) - March 18 - Commit bf269c3874228488a88b4ec6bce322a790655320 
+[Session #1](https://github.com/Henry-Overholt/coffee_and_code_wordle_clone/tree/84082c7e7a2274669ae92d59ec3894ee81a589a8) - March 14th, 2023 - Commit 84082c7e7a2274669ae92d59ec3894ee81a589a8 <br>
+[Session #2](https://github.com/Henry-Overholt/coffee_and_code_wordle_clone/tree/session2) - March 18th, 2023 - Commit bf269c3874228488a88b4ec6bce322a790655320 <br>
+[Ses sion #3](https://github.com/Henry-Overholt/coffee_and_code_wordle_clone/tree/wordle-clone-session-3) - March 25th, 2023 - Commit 6ea5523bbd805958a6f7b87c01ed857858f9a7df
 
 ### Technology
 
