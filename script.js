@@ -6,7 +6,7 @@
 
 // repeat until user solves or they run out of guess ✅
 
-// modify the board
+// modify the board ✅
 
 // to reset board
 
@@ -14,6 +14,7 @@
   let word = "";
   let userGuess = "";
   let keyboard = document.querySelector(".keyboard");
+  let keys = document.querySelectorAll(".key");
   let gameRows = document.querySelectorAll(".gameboard-row");
   let guessNum = 1;
   let guesses = [];
@@ -43,11 +44,12 @@
       key.toLowerCase() === "delete" ||
       key.toLowerCase() === "backspace"
     ) {
-      findLetterTile(userGuess.length - 1).innerText = ""; // the returned element from findLetterTile and reset that innerText to empty
+      findLetterTile(userGuess.length - 1, guessNum).innerText = ""; // the returned element from findLetterTile and reset that innerText to empty
       userGuess = userGuess.substring(0, userGuess.length - 1);
     } else if (isLetter(key) != null) {
       if (userGuess.length < 5) {
-        findLetterTile(userGuess.length).innerText = key.toUpperCase(); // adds key as innerText to returned element as upperCase version;
+        findLetterTile(userGuess.length, guessNum).innerText =
+          key.toUpperCase(); // adds key as innerText to returned element as upperCase version;
         userGuess += key;
       }
     }
@@ -58,11 +60,14 @@
    */
   function checkGuess() {
     if (userGuess === word) {
+      giveFeedback(guessNum, userGuess);
       console.log("You win");
     } else {
       if (guessNum < 6) {
+        giveFeedback(guessNum, userGuess);
         guessNum++; // increments guess counter
         guesses.push(userGuess); // pushes guess to the guesses array as history of guess
+
         userGuess = ""; //resets guess to empty string for next guess
       } else {
         console.log("You lose");
@@ -70,20 +75,51 @@
     }
   }
   /**
-   * TODO function that will change the color for tiles as correct, present or absent
+   * unction that will change the color for tiles as correct, present or absent
    * @param num the guess number
    * @param guess the guess we are checking
    */
-  function giveFeedback(num, guess) {}
+  function giveFeedback(num, guess) {
+    let feedbacks = [];
+    for (let i = 0; i < guess.length; i++) {
+      if (guess[i] === word[i]) {
+        findLetterTile(i, num).classList.add("correct");
+        changeKeyBackgrounds(guess[i], "correct");
+        feedbacks.push("correct");
+      } else if (word.includes(guess[i])) {
+        findLetterTile(i, num).classList.add("present");
+        changeKeyBackgrounds(guess[i], "present");
+        feedbacks.push("present");
+      } else {
+        findLetterTile(i, num).classList.add("absent");
+        changeKeyBackgrounds(guess[i], "absent");
+        feedbacks.push("absent");
+      }
+    }
+  }
+
+  /**
+   * Finds and changes the keys on the keyboard to reflect guessed letters if absent, present, or correct
+   * @param letter the letter we are looking for
+   * @param className the class name we are adding
+   */
+  function changeKeyBackgrounds(letter, className) {
+    for (let key of keys) {
+      if (key.dataset.key === letter) {
+        key.classList.add(className);
+        break;
+      }
+    }
+  }
 
   /**
    * @param letterPosition the position of the tile you want returned. For adding you want the userGuess.length for deleting you want userGuess.length -1
    * @returns the selected div with a class of tile to add or remove innerText or add a class
    */
-  function findLetterTile(letterPosition) {
+  function findLetterTile(letterPosition, number) {
     for (let row of gameRows) {
       //loops through gameRows looking for the correct row
-      if (+row.dataset.row === guessNum) {
+      if (+row.dataset.row === number) {
         //compares our dataset attribute to the current guessNum starting at 1
         return row.children[letterPosition]; //returns the entire div with class of tile
       }
