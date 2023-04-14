@@ -47,6 +47,7 @@ main {
   height: 25px;
   margin: 1px;
   font-family: "Roboto Condensed", sans-serif;
+  background-color: #818384;
 }
 .special-button {
   width: 40px;
@@ -59,7 +60,6 @@ main {
 
 /* Gameboard container style */
 .gameboard {
-  /* border: 1px solid white; */
   margin-top: 50px;
   width: 200px;
   height: 250px;
@@ -69,7 +69,6 @@ main {
   justify-content: space-between;
 }
 .gameboard-row {
-  /* border: 1px solid yellow; */
   width: 100%;
   height: 14%;
   box-sizing: border-box;
@@ -85,4 +84,17 @@ main {
   align-items: center;
   color: #ffffff;
   font-size: 24px;
+}
+
+.present {
+  background-color: #b59f3b;
+  border-color: #b59f3b;
+}
+.absent {
+  background-color: #3a3a3c;
+  border-color: #3a3a3c;
+}
+.correct {
+  background-color: #538d4e;
+  border-color: #538d4e;
 }
