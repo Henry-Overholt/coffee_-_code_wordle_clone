@@ -16,6 +16,7 @@
   let keyboard = document.querySelector(".keyboard");
   let keys = document.querySelectorAll(".key");
   let gameRows = document.querySelectorAll(".gameboard-row");
+  let endGame = document.querySelector("#dialog-module");
   let guessNum = 1;
   let guesses = [];
 
@@ -44,12 +45,15 @@
       key.toLowerCase() === "delete" ||
       key.toLowerCase() === "backspace"
     ) {
-      findLetterTile(userGuess.length - 1, guessNum).innerText = ""; // the returned element from findLetterTile and reset that innerText to empty
+      const tile = findLetterTile(userGuess.length - 1, guessNum);
+      tile.innerText = "";
+      tile.classList.remove("tbd"); // the returned element from findLetterTile and reset that innerText to empty
       userGuess = userGuess.substring(0, userGuess.length - 1);
     } else if (isLetter(key) != null) {
       if (userGuess.length < 5) {
-        findLetterTile(userGuess.length, guessNum).innerText =
-          key.toUpperCase(); // adds key as innerText to returned element as upperCase version;
+        const tile = findLetterTile(userGuess.length, guessNum);
+        tile.innerText = key.toUpperCase();
+        tile.classList.add("tbd"); // adds key as innerText to returned element as upperCase version;
         userGuess += key;
       }
     }
@@ -61,7 +65,7 @@
   function checkGuess() {
     if (userGuess === word) {
       giveFeedback(guessNum, userGuess);
-      console.log("You win");
+      console.log("You win!");
     } else {
       if (guessNum < 6) {
         giveFeedback(guessNum, userGuess);
@@ -81,20 +85,24 @@
    */
   function giveFeedback(num, guess) {
     let feedbacks = [];
+    let delay = 0;
     for (let i = 0; i < guess.length; i++) {
+      let tile = findLetterTile(i, num);
       if (guess[i] === word[i]) {
-        findLetterTile(i, num).classList.add("correct");
+        tile.classList.add("correct");
         changeKeyBackgrounds(guess[i], "correct");
         feedbacks.push("correct");
       } else if (word.includes(guess[i])) {
-        findLetterTile(i, num).classList.add("present");
+        tile.classList.add("present");
         changeKeyBackgrounds(guess[i], "present");
         feedbacks.push("present");
       } else {
-        findLetterTile(i, num).classList.add("absent");
+        tile.classList.add("absent");
         changeKeyBackgrounds(guess[i], "absent");
         feedbacks.push("absent");
       }
+      tile.style.animationDelay = `${delay}ms`;
+      delay += 200;
     }
   }
 
@@ -106,7 +114,7 @@
   function changeKeyBackgrounds(letter, className) {
     for (let key of keys) {
       if (key.dataset.key === letter) {
-        key.classList.add(className);
+        key.classList.add(`${className}-keys`);
         break;
       }
     }
