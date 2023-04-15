@@ -1,3 +1,9 @@
+:root {
+  --present-color: #b59f3b;
+  --correct-color: #538d4e;
+  --absent-color: #3a3a3c;
+  --dark-gray: #121213;
+}
 * {
   margin: 0;
   padding: 0;
@@ -84,17 +90,75 @@ main {
   align-items: center;
   color: #ffffff;
   font-size: 24px;
+  backface-visibility: hidden;
+}
+
+.tbd {
+  animation: pulse 0.1s linear forwards;
 }
 
 .present {
+  --backgroundColor: #b59f3b;
+  --borderColor: #b59f3b;
+  /* background-color: #b59f3b;
+  border-color: #b59f3b; */
+  animation: flip 0.5s linear forwards;
+}
+.absent {
+  --backgroundColor: #3a3a3c;
+  --borderColor: #3a3a3c;
+  /* background-color: #3a3a3c;
+  border-color: #3a3a3c; */
+  animation: flip 0.5s linear forwards;
+}
+.correct {
+  --backgroundColor: #538d4e;
+  --borderColor: #538d4e;
+  /* background-color: #538d4e;
+  border-color: #538d4e; */
+  animation: flip 0.5s linear forwards;
+}
+.present-keys {
   background-color: #b59f3b;
   border-color: #b59f3b;
 }
-.absent {
+.absent-keys {
   background-color: #3a3a3c;
   border-color: #3a3a3c;
 }
-.correct {
+.correct-keys {
   background-color: #538d4e;
   border-color: #538d4e;
+}
+
+@keyframes pulse {
+  0% {
+    border-color: #3a3a3c;
+  }
+  50% {
+    border-color: #565758;
+    transform: scale(1.08);
+  }
+  100% {
+    transform: scale(1);
+    border-color: #565758;
+  }
+}
+
+@keyframes flip {
+  0% {
+    transform: rotateX(0deg);
+  }
+  50% {
+    transform: rotateX(180deg);
+  }
+  60% {
+    border-color: var(--borderColor);
+    background-color: var(--backgroundColor);
+  }
+  100% {
+    border-color: var(--borderColor);
+    background-color: var(--backgroundColor);
+    transform: rotateX(360deg);
+  }
 }
